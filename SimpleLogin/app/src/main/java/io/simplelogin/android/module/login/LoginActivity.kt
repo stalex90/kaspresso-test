@@ -53,7 +53,7 @@ class LoginActivity : BaseAppCompatActivity() {
         setContentView(binding.root)
 
         // Login
-        binding.emailTextField.editText?.addTextChangedListener(object : TextWatcher {
+        binding.emailLoginTextField.editText?.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) = Unit
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) =
                 Unit
@@ -63,8 +63,8 @@ class LoginActivity : BaseAppCompatActivity() {
             }
         })
 
-        binding.emailTextField.editText?.onDrawableEndTouch {
-            binding.emailTextField.editText?.text = null
+        binding.emailLoginTextField.editText?.onDrawableEndTouch {
+            binding.emailLoginTextField.editText?.text = null
         }
 
         binding.passwordTextField.editText?.addTextChangedListener(object : TextWatcher {
@@ -349,7 +349,7 @@ class LoginActivity : BaseAppCompatActivity() {
                         data?.getParcelableExtra<VerificationMode.AccountActivation>(
                             VerificationActivity.ACCOUNT
                         )
-                    binding.emailTextField.editText?.setText(verificationMode?.email?.value)
+                    binding.emailLoginTextField.editText?.setText(verificationMode?.email?.value)
                     binding.passwordTextField.editText?.setText(verificationMode?.password?.value)
                     login()
                 }
@@ -370,7 +370,7 @@ class LoginActivity : BaseAppCompatActivity() {
     }
 
     private fun updateLoginButtonState() {
-        val email = binding.emailTextField.editText?.text.toString()
+        val email = binding.emailLoginTextField.editText?.text.toString()
         val password = binding.passwordTextField.editText?.text.toString()
 
         binding.loginButton.isEnabled = email != "" && password != ""
@@ -379,7 +379,7 @@ class LoginActivity : BaseAppCompatActivity() {
     private fun login() {
         dismissKeyboard()
 
-        val email = binding.emailTextField.editText?.text.toString().trim()
+        val email = binding.emailLoginTextField.editText?.text.toString().trim()
         val password = binding.passwordTextField.editText?.text.toString()
         val deviceName = Build.DEVICE
 

@@ -185,7 +185,7 @@ class HomeActivity : BaseAppCompatActivity(), NavigationView.OnNavigationItemSel
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
         }
         startActivity(intent)
-        Runtime.getRuntime().exit(0)
+        //Runtime.getRuntime().exit(0)
     }
 
     @SuppressLint("SetTextI18n")
