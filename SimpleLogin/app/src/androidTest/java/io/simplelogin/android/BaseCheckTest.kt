@@ -1,26 +1,19 @@
 package io.simplelogin.android
 
-import android.accounts.Account
-import androidx.appcompat.widget.AppCompatImageButton
-import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry
-import androidx.test.rule.ActivityTestRule
 import com.kaspersky.kaspresso.idlewaiting.KautomatorWaitForIdleSettings
 import com.kaspersky.kaspresso.kaspresso.Kaspresso
 import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
 import io.simplelogin.android.module.login.LoginActivity
-import io.simplelogin.android.module.startup.StartupActivity
 import io.simplelogin.android.screens.*
-import org.hamcrest.CoreMatchers.allOf
-import org.hamcrest.CoreMatchers.instanceOf
 import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -35,8 +28,7 @@ class BaseCheckTest : TestCase(
 ) {
 
     @get:Rule
-    var activityActivityTestRule: ActivityTestRule<StartupActivity> =
-        ActivityTestRule(StartupActivity::class.java)
+    val activityRule = ActivityScenarioRule(LoginActivity::class.java)
 
     @Test
     fun baseChecks() {
@@ -93,31 +85,31 @@ class BaseCheckTest : TestCase(
             clickAllTab()
             aliasCardShouldBeVisible()
         }
-        NavigationScreen{
+        NavigationScreen {
             goToSettingAccount()
         }
-        AccountSettingsScreen{
+        AccountSettingsScreen {
             shouldBeOpen()
             clickUpgradeButton()
         }
-        UpgradeScreen{
+        UpgradeScreen {
             shouldBeOpen()
             clickBackIcon()
         }
-        AccountSettingsScreen{
+        AccountSettingsScreen {
             shouldBeOpen()
         }
-        NavigationScreen{
+        NavigationScreen {
             goToAliases()
         }
         AliasesScreen {
             shouldBeOpen()
             aliasCardShouldBeVisible()
         }
-        NavigationScreen{
+        NavigationScreen {
             signOut()
         }
-        LoginScreen{
+        LoginScreen {
             shouldBeOpen()
         }
     }
